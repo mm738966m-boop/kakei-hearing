@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>家計の数字 入力シート｜fulfull</title>
+<meta name="description" content="ご相談の前に、家計と資産の数字をざっくり入れていただく入力シートです。分からない項目は「あとで」で大丈夫です。">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="家計の数字 入力シート｜fulfull">
+<meta property="og:description" content="ざっくりで大丈夫。分からない項目は「あとで」を押すだけ。5分ほどで終わります。">
+<meta property="og:image" content="https://mm738966m-boop.github.io/kakei-hearing/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0E7C86;--deep:#0A5A62;--ink:#1C3236;--ink2:#4A6468;--soft:#EEF6F7;--line:#D5E4E6;--gold:#A87A1F;--goldfill:#D9A441;--goldbg:#FBF4E3;--bg:#fff;--card:#fff;--green:#06C755;--dot:#DCE9EB}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--teal:#4FB8C1;--deep:#7FD3DA;--ink:#E6F1F2;--ink2:#B5C9CC;--soft:#12272A;--line:#27454A;--gold:#E2B85A;--goldfill:#D9A441;--goldbg:#2C2410;--bg:#0C1A1C;--card:#122426;--dot:#1B3236}}
+:root[data-theme="dark"]{--teal:#4FB8C1;--deep:#7FD3DA;--ink:#E6F1F2;--ink2:#B5C9CC;--soft:#12272A;--line:#27454A;--gold:#E2B85A;--goldfill:#D9A441;--goldbg:#2C2410;--bg:#0C1A1C;--card:#122426;--dot:#1B3236}
+*{box-sizing:border-box}
+body,p,li,label,div,span,b,h1,h2,h3{text-wrap:pretty}
+body{margin:0;background:var(--bg) radial-gradient(var(--dot) 1.6px,transparent 1.6px);background-size:22px 22px;color:var(--ink);font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;font-size:20px;font-weight:500;line-height:1.85;overflow-x:hidden}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 80px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 0 10px}
+.top .in{max-width:640px;margin:0 auto;padding:0 16px}
+.prog{display:flex;gap:6px;margin-top:8px}
+.prog span{flex:1;height:10px;border-radius:999px;background:var(--line)}
+.prog span.on{background:var(--teal)}
+.prog span.done{background:var(--goldfill)}
+.steplabel{font-size:16px;font-weight:700;color:var(--ink2)}
+.step{display:none;animation:in .3s ease}
+.step.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.head{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;margin:24px 0 10px}
+.head img{width:110px;height:auto}
+.head h2{font-size:clamp(24px,5vw,32px);font-weight:900;color:var(--deep);line-height:1.35;margin:0}
+.head p{margin:4px 0 0;font-size:17px;color:var(--ink2)}
+.q{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px 18px 14px;margin:14px 0;box-shadow:0 6px 18px rgba(14,124,134,.06)}
+.q .t{font-weight:900;font-size:21px;color:var(--deep);display:flex;gap:10px;align-items:center}
+.q .t .no{width:34px;height:34px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:17px;flex:none}
+.q .hint{font-size:16px;color:var(--ink2);margin:4px 0 10px 44px}
+.row{display:flex;align-items:center;gap:10px;margin-left:44px}
+.row input{font:inherit;font-size:26px;font-weight:900;width:170px;padding:10px 12px;border:2px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);text-align:right}
+.row input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px var(--soft)}
+.row .u{font-weight:700;color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0 44px}
+.chips button{font:inherit;font-size:16px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--deep);cursor:pointer}
+.chips button.sel{background:var(--teal);border-color:var(--teal);color:#fff}
+.chips button.na{border-style:dashed;color:var(--ink2)}
+textarea{font:inherit;font-size:18px;width:100%;min-height:150px;border:2px solid var(--line);border-radius:14px;padding:12px;background:var(--bg);color:var(--ink);margin-left:0}
+.nav{display:flex;gap:10px;margin:22px 0 0}
+.btn{font:inherit;font-size:19px;font-weight:900;padding:14px 18px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--deep);cursor:pointer;flex:1}
+.btn.main{background:var(--green);border-color:var(--green);color:#fff;flex:2}
+.sum{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px}
+.sum .line{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:18px}
+.sum .line b{white-space:nowrap}
+.ok{background:var(--goldbg);border:2px solid var(--goldfill);border-radius:16px;padding:14px 18px;font-size:17px;margin-top:10px}
+.note{font-size:16px;color:var(--ink2)}
+@media (max-width:480px){.head{grid-template-columns:84px 1fr}.head img{width:84px}.q .hint,.row,.chips{margin-left:0}.row input{width:150px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><div class="steplabel" id="sl">1 / 6　はじめに</div><div class="prog" id="prog"><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div></div></div>
+<main class="wrap">
+
+<section class="step on" data-step="0">
+<div class="head"><img src="mascot_invite.webp" alt=""><div><h2>はじめに</h2><p>ご相談の前に、家計の数字をざっくり教えてください。<br>5分ほどで終わります。</p></div></div>
+<div class="q"><div class="t"><span class="no">1</span>お名前</div><div class="hint">ご相談のときのお名前で大丈夫です</div><div class="row"><input id="name" type="text" autocomplete="name" placeholder="例）山田 花子" style="width:100%;text-align:left;font-size:22px"></div></div>
+<input type="text" id="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+<p class="note">入れていただいた数字は、担当の森川だけが見て、ご相談の準備に使います。<br>ほかの目的には使いません。</p>
+<div class="nav"><button class="btn main" type="button" id="start">はじめる</button></div>
+</section>
+
+<section class="step" data-step="1">
+<div class="head"><img src="mascot_invite.webp" alt=""><div><h2>毎月のお金</h2><p>ざっくりで大丈夫。分からない欄は「あとで」を押してください。</p></div></div>
+<div class="q"><div class="t"><span class="no">1</span>世帯の手取り（月）</div><div class="hint">ご夫婦の給与の振込額の合計。賞与は次の欄へ</div><div class="row"><input data-k="手取り（月）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="手取り（月）"><button type="button">25</button><button type="button">30</button><button type="button">35</button><button type="button">40</button><button type="button">45</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">2</span>賞与（年の合計・手取り）</div><div class="hint">年2回なら足した額</div><div class="row"><input data-k="賞与（年）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="賞与（年）"><button type="button">0</button><button type="button">50</button><button type="button">100</button><button type="button">150</button><button type="button">200</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">3</span>家賃または住宅ローン（月）</div><div class="hint">管理費・駐車場も含めて</div><div class="row"><input data-k="住居費（月）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="住居費（月）"><button type="button">0</button><button type="button">5</button><button type="button">8</button><button type="button">10</button><button type="button">12</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">4</span>食費・日用品（月）</div><div class="hint">レシートの合計から。10日で4万円なら月12万円くらい</div><div class="row"><input data-k="食費・日用品（月）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="食費・日用品（月）"><button type="button">8</button><button type="button">10</button><button type="button">12</button><button type="button">15</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">5</span>光熱費・通信費（月）</div><div class="hint">電気・ガス・水道・スマホ・ネット</div><div class="row"><input data-k="光熱費・通信費（月）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="光熱費・通信費（月）"><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">6</span>塾・習い事・学校（月）</div><div class="hint">塾・習い事・給食費など</div><div class="row"><input data-k="教育費（月）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="教育費（月）"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">5</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">7</span>車・交通（月）</div><div class="hint">ガソリン・駐車場・車の保険・電車</div><div class="row"><input data-k="車・交通（月）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="車・交通（月）"><button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">5</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">8</span>その他（月）</div><div class="hint">外食・お小遣い・サブスク・美容など</div><div class="row"><input data-k="その他（月）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="その他（月）"><button type="button">2</button><button type="button">3</button><button type="button">5</button><button type="button">8</button><button type="button" class="na">あとで</button></div></div>
+<div class="nav"><button class="btn main" type="button" data-go="2">つぎへ</button></div>
+</section>
+
+<section class="step" data-step="2">
+<div class="head"><img src="mascot_point.webp" alt=""><div><h2>いまあるお金</h2><p>口座や明細を見なくても、だいたいで構いません。</p></div></div>
+<div class="q"><div class="t"><span class="no">1</span>貯金（ご夫婦の合計）</div><div class="hint">使っている口座をざっくり足して</div><div class="row"><input data-k="貯金" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="貯金"><button type="button">100</button><button type="button">300</button><button type="button">500</button><button type="button">1000</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">2</span>確定拠出年金・企業年金</div><div class="hint">会社の明細の残高。企業年金も含めて</div><div class="row"><input data-k="確定拠出年金" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="確定拠出年金"><button type="button">100</button><button type="button">200</button><button type="button">300</button><button type="button">500</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">3</span>会社の持ち株</div><div class="hint">持株会の評価額</div><div class="row"><input data-k="持ち株" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="持ち株"><button type="button">50</button><button type="button">100</button><button type="button">200</button><button type="button">300</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">4</span>NISA・投資信託・株</div><div class="hint">いまの評価額の合計</div><div class="row"><input data-k="NISA・投資" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="NISA・投資"><button type="button">0</button><button type="button">5</button><button type="button">10</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">5</span>住宅ローンの残り</div><div class="hint">なければ0</div><div class="row"><input data-k="住宅ローン残高" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="住宅ローン残高"><button type="button">0</button><button type="button">1000</button><button type="button">2000</button><button type="button">3000</button><button type="button" class="na">あとで</button></div></div>
+<div class="nav"><button class="btn" type="button" data-go="2">もどる</button><button class="btn main" type="button" data-go="4">つぎへ</button></div>
+</section>
+
+<section class="step" data-step="4">
+<div class="head"><img src="mascot_think.webp" alt=""><div><h2>将来のお金</h2><p>ねんきん定期便や会社の規定が手元になければ「あとで」で大丈夫です。</p></div></div>
+<div class="q"><div class="t"><span class="no">1</span>退職金の見込み</div><div class="hint">会社の規定や先輩の話から</div><div class="row"><input data-k="退職金見込み" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="退職金見込み"><button type="button">500</button><button type="button">1000</button><button type="button">1500</button><button type="button">2000</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">2</span>ご本人の年金見込み（年額）</div><div class="hint">ねんきん定期便の「老齢年金の見込額」</div><div class="row"><input data-k="ご本人の年金見込み（年）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="ご本人の年金見込み（年）"><button type="button">150</button><button type="button">180</button><button type="button">200</button><button type="button">240</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">3</span>配偶者の年金見込み（年額）</div><div class="hint">ねんきん定期便から</div><div class="row"><input data-k="配偶者の年金見込み（年）" type="number" inputmode="numeric"><span class="u">万円</span></div><div class="chips" data-for="配偶者の年金見込み（年）"><button type="button">70</button><button type="button">80</button><button type="button">100</button><button type="button">120</button><button type="button" class="na">あとで</button></div></div>
+<div class="q"><div class="t"><span class="no">4</span>何歳まで働く予定</div><div class="hint">再雇用で65歳まで、など</div><div class="row"><input data-k="働く予定" type="number" inputmode="numeric"><span class="u">歳</span></div><div class="chips" data-for="働く予定"><button type="button">60</button><button type="button">65</button><button type="button">70</button><button type="button" class="na">あとで</button></div></div>
+<div class="nav"><button class="btn" type="button" data-go="2">もどる</button><button class="btn main" type="button" data-go="4">つぎへ</button></div>
+</section>
+
+<section class="step" data-step="4">
+<div class="head"><img src="mascot_base.webp" alt=""><div><h2>ひとこと</h2><p>お子さまの進路の希望や、気になっていること。何でもどうぞ。</p></div></div>
+<div class="q"><textarea id="memo" placeholder="例）中学は公立、高校から私立も考えている。留学は本人次第。"></textarea></div>
+<div class="nav"><button class="btn" type="button" data-go="3">もどる</button><button class="btn main" type="button" id="make">入力を完了する</button></div>
+<p class="note" id="err" style="display:none;color:#C2452F"></p>
+</section>
+
+<section class="step" data-step="5">
+<div class="head"><img src="mascot_invite.webp" alt=""><div><h2>受け付けました</h2><p id="doneMsg">ありがとうございました。<br>受付番号：<b id="no"></b></p></div></div>
+<p>いただいた数字は、次のご相談の準備に使います。<br>入れた内容は下のとおりです。</p>
+<div class="sum" id="sum"></div>
+<div id="fallback" style="display:none">
+<div class="ok">通信がうまくいかなかったため、文章で送っていただく形に切り替えました。<br>下のボタンでコピーしてLINEを開き、貼り付けて送信を押してください。</div>
+<button class="btn main" type="button" id="copy" style="width:100%;margin-top:14px">文章をコピーする</button>
+<div class="ok" id="done" style="display:none">コピーしました。<br>LINEを開いて貼り付け、送信を押すと届きます。</div>
+<textarea id="text" readonly style="margin-top:12px;min-height:120px;font-size:16px"></textarea>
+</div>
+<p class="note" style="margin-top:18px">数字を直したいときは、LINEでひとこと送っていただければ大丈夫です。</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const API='https://script.google.com/macros/s/AKfycbwT6yYMjkRQPLvWwQWJpJnn3a1cblQnkrD_PQYWxdf4ZW3Elwk5Z5ufIA5XQZlL-a-M/exec';
+const labels=['はじめに','毎月のお金','いまあるお金','将来のお金','ひとこと','受け付けました'];
+function go(n){document.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',+s.dataset.step===n));document.querySelectorAll('#prog span').forEach((b,i)=>{b.className=i<n?'done':i===n?'on':''});$('sl').textContent=(n+1)+' / 6　'+labels[n];window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(+b.dataset.go));
+document.querySelectorAll('.chips').forEach(c=>{const inp=document.querySelector('input[data-k="'+c.dataset.for+'"]');c.querySelectorAll('button').forEach(b=>b.onclick=()=>{c.querySelectorAll('button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');if(b.classList.contains('na')){inp.value='';inp.dataset.later='1'}else{inp.value=b.textContent;delete inp.dataset.later}});inp.addEventListener('input',()=>{c.querySelectorAll('button').forEach(x=>x.classList.toggle('sel',x.textContent===inp.value));delete inp.dataset.later})});
+const KEYS={'手取り（月）':'tedori','賞与（年）':'shoyo','住居費（月）':'jukyo','食費・日用品（月）':'shokuhi','光熱費・通信費（月）':'kounetsu','教育費（月）':'kyoiku','車・交通（月）':'kuruma','その他（月）':'sonota','貯金':'chokin','確定拠出年金':'dc','持ち株':'mochikabu','NISA・投資':'kaishanisa','住宅ローン残高':'loan','退職金見込み':'taishoku','ご本人の年金見込み（年）':'nenkin1','配偶者の年金見込み（年）':'nenkin2','働く予定':'hataraku'};
+$('start').onclick=()=>{if(!$('name').value.trim()){$('name').focus();$('name').style.borderColor='#C2452F';return}go(1)};
+$('make').onclick=async()=>{const nm=$('name').value.trim();if(!nm){go(0);$('name').focus();return}
+ const data={name:nm,website:$('website').value,memo:$('memo').value.trim(),later:[],src:location.href.split('?')[0]};
+ document.querySelectorAll('input[data-k]').forEach(i=>{const k=KEYS[i.dataset.k];if(i.value!=='')data[k]=i.value;else if(i.dataset.later)data.later.push(k)});
+ const lines=['【家計の数字】'+nm+'　'+new Date().toLocaleDateString('ja-JP')];let html='';document.querySelectorAll('input[data-k]').forEach(i=>{const k=i.dataset.k;const u=k==='働く予定'?'歳':'万円';if(i.value!==''){lines.push(k+'：'+i.value+u);html+=`<div class="line"><span>${k}</span><b>${i.value}${u}</b></div>`}else if(i.dataset.later){lines.push(k+'：あとで');html+=`<div class="line"><span>${k}</span><b style="color:var(--ink2)">あとで</b></div>`}});const m=$('memo').value.trim();if(m){lines.push('ひとこと：'+m);html+=`<div class="line"><span>ひとこと</span><b style="white-space:normal;text-align:right">${m.replace(/</g,'&lt;')}</b></div>`}
+ if(lines.length===1){alert('どれか1つでも数字を入れてください');return}
+ $('sum').innerHTML=html;$('text').value=lines.join('\n');$('done').style.display='none';
+ const b=$('make');b.disabled=true;b.textContent='送っています…';
+ try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});const j=await r.json();
+  if(!j.ok)throw new Error(j.error||'error');$('no').textContent=j.no;$('fallback').style.display='none'}
+ catch(e){$('doneMsg').innerHTML='ありがとうございました。<br>あと1つだけ、下の手順をお願いします。';$('fallback').style.display=''}
+ b.disabled=false;b.textContent='入力を完了する';go(5)};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('text').value)}catch(e){$('text').select();document.execCommand('copy')}$('done').style.display=''};
+</script>
+</body>
+</html>
